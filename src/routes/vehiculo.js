@@ -13,8 +13,7 @@ router.post('/add', async (req, res) => {
     const newVehiculo = {
         Placa,
         Tarjeta_Propiedad,
-        id_cliente: req.Cliente.id_cliente
-
+    
     };
     await pool.query('INSERT INTO vehiculo set ?', [newVehiculo]);
     req.flash('success', 'Registro vehiculo correctamente');

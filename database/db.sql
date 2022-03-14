@@ -30,3 +30,17 @@ alter table Vehiculo
 
 ALTER TABLE Vehiculo
     MODIFY id_vehiculo INT(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
+
+	create table Plaza (
+	id_plaza int(10) NOT NULL,
+	localizacion char (60) not null ,	
+	tipo_servicio char(60) not null,
+    nivel char(60) not null,
+    estado char(60) not null
+);
+alter table Plaza
+    ADD PRIMARY KEY (id_plaza);
+
+ALTER TABLE Plaza
+    MODIFY id_plaza INT(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
+

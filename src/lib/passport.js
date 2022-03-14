@@ -47,10 +47,11 @@ passport.use('local.signup', new LocalStrategy({
 
 //serializar user
 passport.serializeUser((cliente, done) => {
-  done(null, cliente.id_cliente);
+  done(null, cliente.id);
+  console.log(cliente.id);
 });
 //deserializar user
 passport.deserializeUser(async (id_cliente, done) => {
     const rows = await pool.query('SELECT * FROM Cliente WHERE id_cliente = ?', [id_cliente]);
     done(null, rows[0]);
-  });
+});
