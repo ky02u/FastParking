@@ -4,11 +4,11 @@ const router = express.Router();
 const pool = require('../database'); //conexion db
 const { isLoggedIn } = require('../lib/auth');
 
-router.get('/add',(req, res) => {
+router.get('/add', isLoggedIn, (req, res) => {
     res.render('vehiculo/add');
 });
 
-router.post('/add', async (req, res) => {
+router.post('/add', isLoggedIn, async (req, res) => {
     const { Placa, Tarjeta_Propiedad} = req.body;
     const newVehiculo = {
         Placa,
@@ -20,27 +20,27 @@ router.post('/add', async (req, res) => {
     res.redirect('/vehiculo');
 });
 
-router.get('/', async(req, res) => {
+router.get('/', isLoggedIn, async(req, res) => {
     const vehiculo = await pool.query('SELECT * FROM vehiculo ')
     console.log(vehiculo)
     res.render('vehiculo/list',  { vehiculo });
 });
 
-router.get('/delete/:id_vehiculo', async (req, res) => {
+router.get('/delete/:id_vehiculo', isLoggedIn, async (req, res) => {
     const {id_vehiculo} = req.params;
     await pool.query('DELETE FROM vehiculo WHERE id_vehiculo = ?',[id_vehiculo])
     req.flash('success', 'Elminado de manera correcta');
     res.redirect('/vehiculo')
 });
 
-router.get('/edit/:id_vehiculo', async (req, res) => {
+router.get('/edit/:id_vehiculo', isLoggedIn, async (req, res) => {
     const {id_vehiculo} = req.params;  
     const vehiculos = await pool.query('SELECT * FROM vehiculo where id_vehiculo = ?', [id_vehiculo]);     
     res.render('vehiculo/edit', {vehiculo: vehiculos[0]});
 
 }); 
 
-router.post('/edit/:id_vehiculo', async (req,res) =>{
+router.post('/edit/:id_vehiculo', isLoggedIn, async (req,res) =>{
     const { id_vehiculo } = req.params; 
     const { placa, tarjeta_propiedad } = req.body;
     const newVehiculo2 = {

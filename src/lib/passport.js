@@ -41,15 +41,15 @@ passport.use('local.signup', new LocalStrategy({
   };
   newCliente.password = await helpers.encryptPassword(password);    
   const result = await pool.query('INSERT INTO Cliente SET ? ', newCliente);
-  newCliente.id = result.insertId;
+  newCliente.id_cliente = result.insertId;
   return done(null, newCliente);
 }));
 
 //serializar user
 passport.serializeUser((cliente, done) => {
-  done(null, cliente.id);
-  console.log(cliente.id);
+  done(null, cliente.id_cliente);
 });
+
 //deserializar user
 passport.deserializeUser(async (id_cliente, done) => {
     const rows = await pool.query('SELECT * FROM Cliente WHERE id_cliente = ?', [id_cliente]);
