@@ -1,0 +1,33 @@
+<div class="container-p4">
+    <div class="row">
+
+        {{#each pago}}
+            <div class="col-md-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <a>
+                            <h3 class="card-title text-uppercase">
+                                VALOR DE PAGO # {{id_pago}}
+                            </h3>
+                        </a>
+                    <p class="m-2">{{costo}}</p>
+                   
+                    <a class="btn btn-danger" href="/pago/delete/{{id_pago}}">
+                        Delete
+                    </a>
+                    <a class="btn btn-secondary" href="/pago/edit/{{id_pago}}">
+                        Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>Usted no tiene registrado ningun pago realizado.</p>
+                <a href="/pago/add">Añada pagos hechos</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

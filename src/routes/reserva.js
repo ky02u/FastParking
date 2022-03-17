@@ -12,7 +12,7 @@ router.post('/add',isLoggedIn, async (req, res) => {
     const { fecha, hora} = req.body;
     const newreserva = {
         fecha,
-        hora,
+        hora
     };
     await pool.query('INSERT INTO reserva set ?', [newreserva]);
     req.flash('success', 'Reserva registrada exitosamente');
@@ -44,7 +44,7 @@ router.post('/edit/:id_reserva',isLoggedIn, async (req,res) =>{
     const { fecha,hora  } = req.body;
     const newreserva2 = {
         fecha,
-        hora,
+        hora
     };
     await pool.query('UPDATE reserva set ? WHERE id_reserva = ?', [newreserva2, id_reserva]); 
     req.flash('success', 'Actualizado de manera correcta');   

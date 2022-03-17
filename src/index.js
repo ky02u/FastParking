@@ -57,6 +57,8 @@ app.use(require('./routes/index'));
 app.use(require('./routes/authentication'));
 app.use('/vehiculo', require('./routes/vehiculo'));
 app.use('/plaza', require('./routes/plaza'));
+app.use('/reserva', require('./routes/reserva'));
+app.use('/pago', require('./routes/pago'));
 
 //archivos publicos
 app.use(express.static(path.join(__dirname,'public')))

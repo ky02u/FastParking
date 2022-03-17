@@ -17,7 +17,13 @@
                     <a class="btn btn-secondary" href="/vehiculo/edit/{{id_vehiculo}}">
                         Edit
                     </a>
+                    <a class="btn btn-danger" href="/vehiculo/sacarCosto/{{id_vehiculo}}">
+                        Calcular costo
+                    </a>
                 </div>
+              <script>
+                 var plata =  localStorage.getItem("plata");
+              </script>
             </div>
         </div>
         {{else}}

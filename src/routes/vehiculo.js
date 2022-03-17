@@ -9,11 +9,12 @@ router.get('/add', isLoggedIn, (req, res) => {
 });
 
 router.post('/add', isLoggedIn, async (req, res) => {
+    let fechaEntrada = new Date();
     const { Placa, Tarjeta_Propiedad} = req.body;
     const newVehiculo = {
         Placa,
         Tarjeta_Propiedad,
-    
+        fechaEntrada
     };
     await pool.query('INSERT INTO vehiculo set ?', [newVehiculo]);
     req.flash('success', 'Registro vehiculo correctamente');
@@ -32,6 +33,22 @@ router.get('/delete/:id_vehiculo', isLoggedIn, async (req, res) => {
     req.flash('success', 'Elminado de manera correcta');
     res.redirect('/vehiculo')
 });
+
+
+router.get('/sacarCosto/:id_vehiculo',isLoggedIn, async (req, res) => {
+    const {id_vehiculo} = req.params;
+    var now = new Date();
+    const vehiculos = await pool.query('SELECT fechaEntrada FROM vehiculo where id_vehiculo = ?', [id_vehiculo]);     
+    var valor = now -  vehiculos[0].fechaEntrada;
+    var cuota = 0.000111111;
+    var plata = valor*cuota;
+    res.render('vehiculo/sacarCosto');
+    req.flash('success', 'Costo calculado de manera correcta', plata);
+    res.redirect('/vehiculo')
+    localStorage.setItem("plata",plata);
+});
+
+
 
 router.get('/edit/:id_vehiculo', isLoggedIn, async (req, res) => {
     const {id_vehiculo} = req.params;  

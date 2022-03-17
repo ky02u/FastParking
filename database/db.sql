@@ -21,6 +21,7 @@ create table Vehiculo (
 	id_vehiculo int(10) NOT NULL,
 	placa varchar(100) not null,
 	tarjeta_propiedad varchar(60) not null,
+	fechaEntrada datetime,
     id_cliente int(10),
     CONSTRAINT fk_cliente FOREIGN KEY(id_cliente) REFERENCES Cliente(id_cliente)
     
@@ -51,3 +52,13 @@ hora time not null,
 );
 alter table reserva
     ADD PRIMARY KEY (id_reserva);
+
+create table pago (
+	id_pago int(10) NOT NULL,
+	costo int(30) NOT NULL,
+    id_cliente int(10),
+    CONSTRAINT fk_cliente FOREIGN KEY(id_cliente) REFERENCES Cliente(id_cliente)
+    
+);	
+alter table pago
+    ADD PRIMARY KEY (id_pago);
