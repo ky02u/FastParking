@@ -1,0 +1,39 @@
+<div class="container-p4">
+    <h1 class="text-center m-3">Listado de reservas </h1>
+    <div class="row">
+     
+        {{#each reserva}}
+            <div class="col-md-3">
+                
+                <div class="card text-center">
+                    
+                    <div class="card-body">
+                        
+                        <a>
+                            <h3 class="card-title text-capitalize">
+                               identificador de reserva: # {{ id_reserva }}
+                            </h3>
+                        </a>
+                    <p class="m-2 text-capitalize">
+                        <span class="text-green-300">fecha:</span>
+                       {{fecha}}</p>
+                    <p class="m-2 text-capitalize">hora: {{hora}}</p>
+                    <a class="btn btn-danger" href="/reserva/delete/{{id_reserva}}">
+                        Delete
+                    </a>
+                    <a class="btn btn-secondary" href="/reserva/edit/{{id_reserva}}">
+                        Edit
+                    </a>
+                </div>
+            </div>
+        </div>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>Usted no tiene registrada ningun reserva.</p>
+                <a href="/reserva/add">Registre reserva</a>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>

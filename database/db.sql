@@ -44,3 +44,10 @@ alter table Plaza
 ALTER TABLE Plaza
     MODIFY id_plaza INT(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT = 1;
 
+Create table reserva (
+id_reserva int(10) NOT NULL AUTO_INCREMENT,
+fecha date  not null,
+hora time not null,
+);
+alter table reserva
+    ADD PRIMARY KEY (id_reserva);
